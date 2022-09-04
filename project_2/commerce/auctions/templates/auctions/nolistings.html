@@ -1,0 +1,72 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+<div style="margin-left: 20px;">
+
+
+    <div class="row">
+
+        <div class="col-8 col-sm-6">
+
+
+
+    <h1 style="color: blue;">{{ winning_message }}</h1>
+    
+    <h3 style="color: red;">{{ not_active_message }}</h3>
+    
+    <h2 style="margin-bottom: 20px">Listing: {{listings.title_of_listing}}</h2>
+    
+    <h4>Description:</h4>
+    <p style="margin-bottom: 20px; margin-top: 20px;">{{ listings.description_of_listing }}</p>
+
+    <h4>Starting Price: $ {{ listings.starting_bid_of_listing }}</h4>
+
+
+    <p>There were {{ number }} bid(s).</p>
+
+    {% if bids %}
+    <h3>Highest Bid: $ {{ bids.price_of_bid }}</h3>
+    {% endif %}
+
+
+    Details:
+    <ol>Listed by: {{ listings.listed_by_user }}</ol>
+    {% if listings.category_of_listing.name_of_category %}
+    <ol>Category: {{ listings.category_of_listing.name_of_category }}</ol>
+    {% else %}
+    <ol>Category: No Category Listed</ol>
+    {% endif %}
+
+
+    </div>
+
+
+    <div class="col-4 col-sm-6">
+
+    <img src="{{listings.image_of_listing}}" alt="Image of Listing is missing" style="max-width: 450px; max-height: 300px; margin-bottom: 20px">
+
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-sm-9">
+
+        <h4>Comments:</h4>
+
+        {% if get_comments %}
+        {% for comment in get_comments %}
+        <div class="d-flex d-print-table-row">
+            <b> {{ comment.comment_from_user }}:</b> &nbsp;
+            <p> {{ comment.content_of_comment }} </p>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+    </div>
+
+</div>
+
+</div>
+{% endblock %}

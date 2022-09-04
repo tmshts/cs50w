@@ -1,0 +1,36 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Closed Listings</h2>
+
+    {% for listing,price in context %}
+    <form action="{% url 'listings' listing.id %}" method="post">
+        {% csrf_token %}
+        <div type="submit" name="listing_submit" style="border: none;">
+            <button style="border:1px solid black; margin-bottom: 20px; background-color: white;" class="container-fluid">
+                <div class="d-flex d-print-table-row">
+                    
+                    <div class="p-2">
+                        <div style="width: 450px; height: auto;">
+                            <img src="{{listing.image_of_listing}}" alt="Image of Listing is missing" style="max-width: 450px; max-height: 300px;">
+                        </div>
+                    </div>
+                    <div class="p-2" style="text-align: left;">
+                        <div style="height: auto;">
+                            <h3>{{ listing.title_of_listing }}</h3>
+                            <h6>Starting Price: $ {{listing.starting_bid_of_listing}}</h6>
+
+                            <h6>Current price: $ {{ price }}</h6>
+
+                            <br>
+                            <p>{{ listing.description_of_listing }}</p>
+                            <p style="font-style: italic; font-size: 10px; margin-top: 30px;">Created {{ listing.time_of_creation }}</p>
+                        </div>
+                    </div>
+                </div>
+            </button>
+        </div>
+    </form>
+    {% endfor %}
+    
+{% endblock %}

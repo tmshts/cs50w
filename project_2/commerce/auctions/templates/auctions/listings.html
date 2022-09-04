@@ -1,0 +1,118 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+<div style="margin-left: 20px;">
+
+
+<div class="row">
+
+    <div class="col-8 col-sm-6">
+        
+    {% if user.is_authenticated %}
+    <form action="{% url 'watchlist' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="listing_id" value="{{ listings.id }}">
+        {{ WatchlistForm }}
+        <button type="submit" style="border: none; color:white; background: grey; border-radius: 10px; margin-bottom: 10px;">
+            Add to Watchlist
+        </button>
+    </form>
+    {% else %}
+    <p style="color: red;">You must be signed in to be able to add item in your watchlist.</p>
+    {% endif %}
+
+    <p style="color: red;">{{ messagedatabase }}</p>
+
+    {% if not_active_form %}
+    <form action="{% url 'listings' listings.id %}" method="post">
+        {% csrf_token %}
+        {{ not_active_form }}
+        <input type = "submit" name="not_active" value="Close Listing" style="border: none; background-color: red; color: white; border-radius: 10px">
+    </form>
+    {% endif %}
+    
+    <h2 style="margin-bottom: 20px">Listing: {{listings.title_of_listing}}</h2>
+    
+    <h4>Description:</h4>
+    <p style="margin-bottom: 20px; margin-top: 20px;">{{ listings.description_of_listing }}</p>
+
+    <h4>Starting Price: $ {{ listings.starting_bid_of_listing }}</h4>
+
+    <p>There are currently {{ number }} bid(s).</p>
+
+    {% if bids %}
+    <h3>Current Price: $ {{ bids.price_of_bid }}</h3>
+    {% endif %}
+
+    <h3>{{ message_no_bid }}</h3>
+    
+    {% if user.is_authenticated %}
+    <p style="color: red;">{{bid_message}}</p>
+    <form action="{% url 'listings' listings.id %}" method="post">
+        {% csrf_token %}
+        {{ bidform }}
+        <br>
+        <input type="submit" name="bid_submit" style="background-color: blue; color: white; border: none; margin-top: 5px; margin-bottom: 10px;" value="Place Bid">
+    </form>
+    {% else %}
+    <p style="color: red;">You must be signed in to be able to bid on the item.</p>
+    {% endif %}
+
+    Details:
+    <ol>Listed by: {{ listings.listed_by_user }}</ol>
+    {% if listings.category_of_listing.name_of_category %}
+    <ol>Category: {{ listings.category_of_listing.name_of_category }}</ol>
+    {% else %}
+    <ol>Category: No Category Listed</ol>
+    {% endif %}
+
+    </div>
+
+
+    <div class="col-4 col-sm-6">
+
+    <img src="{{listings.image_of_listing}}" alt="Image of Listing is missing" style="max-width: 450px; max-height: 300px; margin-bottom: 20px">
+
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-sm-9">
+
+
+        <h4>Comments:</h4>
+        {% if get_comments %}
+        {% for comment in get_comments %}
+        <div class="d-flex d-print-table-row">
+            <p> <b> {{ comment.comment_from_user }}:</b> </p> &nbsp;
+            {{ comment.content_of_comment }} 
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        <br>
+        {% if user.is_authenticated %}
+        <form action="{% url 'listings' listings.id %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="hidden" name="comment_id" value="{{ listings.id }}">
+                {{ comment_form }}
+            </div>
+            <button type="submit" style="border: none; color:white; background: grey; border-radius: 10px; margin-bottom: 5px;">
+                Add
+            </button>
+        </form>
+        {% else %}
+        <p style="color: red;">You must be signed in to be able to add comment.</p>
+        {% endif %}
+
+    </div>
+
+</div>
+
+</div>
+
+
+{% endblock %}
