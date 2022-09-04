@@ -1,0 +1,33 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Create New Page
+{% endblock %}
+
+{% block body %}
+
+<div id="searching">
+
+    <div>
+        <h1>Create New Entry</h1>
+     </div>
+
+    <p style="color:red;">{{ error_message }}</p>
+
+    <div>
+        <!--<textarea value="entry_id" name="entry_title" placeholder="Write Title"></textarea>-->
+        <!--<textarea value="entry_id" name="entry_content" placeholder="Write Markdown Content"></textarea>-->
+        <form id=entry_id action="{% url 'wiki:new_entry' %}" method="post">
+            {% csrf_token %}
+
+            {{ entry_title_get }}
+    
+            <input type="submit" value="save">
+        </form>
+    </div>
+
+</div>
+
+
+
+{% endblock %}
