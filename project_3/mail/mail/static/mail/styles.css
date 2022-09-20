@@ -1,0 +1,14 @@
+textarea {
+    min-height: 200px;
+}
+
+.sent_mail_div {
+    margin-bottom: 10px;
+    border:1px solid black;
+    margin-bottom: 2px;
+    background-color: white;
+}
+
+#float-right-in-div {
+    float: right;
+}
