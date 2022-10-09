@@ -1,0 +1,69 @@
+.edit_save_class {
+    margin-right: 10px;
+    border: none;
+    background-color: #1e90ff;
+    color: white;
+}
+
+.edit_cancel_class {
+    border: none;
+    background-color: #1e90ff;
+    color: white;
+}
+
+.edit_textarea_class {
+    width: 100%;
+    height: 100%; 
+    box-sizing: border-box;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding: 5px;
+}
+
+.post_div {
+    border: solid 1px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+#profile_div {
+    text-align:center;
+    background-color: deepskyblue;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+#follow_button {
+    border: none;
+    color: blue;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+.message {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15x;
+}
+
+#content_post {
+    word-wrap: break-word;
+}
+
+#edit_button {
+    border: none;
+    background-color: white;
+    color: blue;
+}
+
+#edit_button:hover {
+    background-color: black;
+    color: white;
+  }
+
+#likes_button {
+    border: none;
+    background-color: white;
+    font-size: 18px;
+}

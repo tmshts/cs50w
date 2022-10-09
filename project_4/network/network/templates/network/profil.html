@@ -1,0 +1,57 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+    {% if user.is_authenticated %}
+
+        <div id="profile_div">
+            <h1 id="is_followed">{{ current_user }}</h1>
+            <h6>Following: <strong id="following_id">{{ user_follow }}</strong></h6>
+            <h6>Followers: <strong id="followers_id">{{ user_is_followed }}</strong></h6>
+            {% if request_user|stringformat:'s' != current_user|stringformat:'s' %}
+            <button id="follow_button">{{ follow_value }}</button>
+            {% endif %}
+        </div>
+
+        <hr>
+
+        {% if not page_obj %}
+        <h3 class="message">You have not posted anything yet.</h3>
+        {% endif %}
+        {% for post in page_obj %}
+        <div >
+            <div class="post_div">
+                <i id="wants_follow" style="display: none">{{ request_user }}</i>
+                <i id="is_followed" style="display: none">{{ current_user }}</i>
+                
+                <i id="current_user" style="display: none">{{ request_user }}</i>
+                <div id="post_id" style="display: none;">{{ post.id }}</div>
+                
+                <div id="content_post">{{ post.content_post }}</div>
+                <div id="div_for_textarea">
+                </div>
+                {% if request_user|stringformat:'s' == current_user|stringformat:'s' %}
+                    <div id="edit_hide">
+                        <button id="edit_button">Edit</button>
+                    </div>
+                {% endif %}
+                <div><i >{{ post.timestamp }}</i></div>
+                <button id="likes_button"><span style="color:red;">&hearts;</span><strong id="likes_value">{{ post.number_of_likes.count }}</strong></button>
+            </div>
+        </div>
+        {% endfor %}
+
+        <hr>
+        <!-- include pagination -->
+        {% include 'network/pagination.html' %}
+
+    {% endif %}
+
+
+{% endblock %}
+
+
+{% block script %}
+    <script src="{% static 'network/profil.js' %}"></script>
+{% endblock %}

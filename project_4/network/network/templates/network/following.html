@@ -1,0 +1,48 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+    {% if user.is_authenticated %}
+
+        <h3 class="message">All the posts from people you follow</h3>
+
+        <hr>
+        <!--{{ current_user }}-->
+
+        <!--
+        {% for post in selected_users %}
+        <div >
+            <div style="border: solid 1px; margin-bottom: 5px; border-radius: 5px; padding: 5px;">
+                <div><i >{{ post }}</i></div>
+                <div><i >{{ post.is_followed }}</i></div>
+            </div>
+        {% endfor %}
+        -->
+        {% if not page_obj %}
+        <h3 class="message">You do not follow anyone yet.</h3>
+        {% endif %}
+        {% for post in page_obj %}
+            <div class="post_div">
+                <div id="current_user" style="display: none">{{ current_user }}</div>
+                <div id="post_id" style="display: none;">{{ post.id }}</div>
+
+                <h5><a href="{% url 'profil' post.user_post.username %}" id="post_user_post">{{ post.user_post }}</a></h5>
+                <div>{{ post.content_post }}</div>
+                <div><i >{{ post.timestamp }}</i></div>
+                <button id="likes_button"><span style="color:red;">&hearts;</span><strong id="likes_value">{{ post.number_of_likes.count }}</strong></button>
+            </div>
+        {% endfor %}
+
+        <hr>
+        <!-- include pagination -->
+        {% include 'network/pagination.html' %}
+
+
+    {% endif %}
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'network/profil.js' %}"></script>
+{% endblock %}

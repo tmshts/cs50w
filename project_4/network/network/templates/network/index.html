@@ -1,0 +1,53 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+    {% if user.is_authenticated %}
+    
+        <div id="compose-view" style="text-align: center;">
+            <h3>New Post</h3>
+            <form id="compose-form" action="{% url 'create_post' %}" method="POST">
+                {% csrf_token %}
+                {{ form }}
+                <div><input id="compose-submit" type="submit" value="Post" class="btn btn-primary"/></div>
+            </form>
+        </div>
+        
+        <hr>
+
+        {% if not page_obj %}
+        <h3 class="message">There are no posts yet.</h3>
+        {% endif %}
+        {% for post in page_obj %}
+            <div class="post_div">
+                <div id="post_id" style="display: none;">{{ post.id }}</div>
+                <div style="display: none;">{{ post.user_post }}</div>
+                <div id="current_user" style="display: none;">{{ current_user }}</div>
+                
+                <h5><a href="{% url 'profil' post.user_post.username %}" id="post_user_post">{{ post.user_post }}</a></h5>
+                <div id="content_post">{{ post.content_post }}</div>
+                <div id="div_for_textarea">
+                </div>
+                {% if post.user_post == current_user %}
+                    <div id="edit_hide">
+                        <button id="edit_button">Edit</button>
+                    </div>
+                {% endif %}
+                <div><i >{{ post.timestamp }}</i></div>
+                <button id="likes_button"><span style="color:red;">&hearts;</span><strong id="likes_value">{{ post.number_of_likes.count }}</strong></button>
+            </div>
+        {% endfor %}
+
+        <hr>
+        <!-- include pagination -->
+        {% include 'network/pagination.html' %}
+
+
+    {% endif %}
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'network/profil.js' %}"></script>
+{% endblock %}
