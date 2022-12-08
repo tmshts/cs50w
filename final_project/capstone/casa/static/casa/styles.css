@@ -1,0 +1,345 @@
+.welcome_headers {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.no_search {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: x-large;
+}
+
+#navbar-link {
+    color: white;
+}
+
+.btn-primary {
+    background-color: blueviolet;
+}
+
+.box {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: stretch;
+  }
+
+#h5 {
+    display: inline-block;
+}
+
+.input {
+    border-radius: 5px;
+    width: 20px;
+  }
+
+.background_of_image {
+    /*object-fit:contain;*/
+    width: 265px;
+    height: 190px;
+    border-radius: 8%;
+  }
+
+.popup_image {
+    width: 220px;
+    height: 150px;
+  }
+
+.images_in_property {
+    width: 290px;
+    height: 190px;
+    margin-bottom: 5px;
+  }
+
+#div_in_image {
+    position: relative;    
+  }
+
+.divbody {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.flex-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.flex-item {
+  background: blueviolet;
+  width: 110px;
+  margin-top: 10px;
+  margin-right: 10px;
+  line-height: 30px;
+  color: white;
+  font-size: 15px;
+  text-align: center;
+  border-radius: 20px;
+  font-size: small;
+}
+
+#flex-item-index {
+  border-radius: 10px;
+  width: 265px;
+  margin-top: 15px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+  font-size: 15px;
+  box-shadow: 0 3px 10px lightgray;
+}
+
+.btn_design {
+  background-color: #483D8B;
+  color: white;
+  border-radius: 10px;
+}
+
+.btn:hover {
+  background-color: blueviolet;
+}
+
+.btn.active {
+  background-color: blueviolet;
+  color: white;
+}
+
+.salesrent {
+  font-size: larger;
+ }
+
+#container_wrapper {
+  display: flex;
+  margin-top: 2px;
+  float: right;
+}
+
+#currency_container {
+  display: inline-block;
+}
+
+#metric_container {
+  display: inline-block;
+}
+
+
+.select_option {
+  border-radius: 10px;
+  background-color: white;
+}
+
+/*
+.filter_input_field {
+  width: 150px;
+}
+*/
+
+/*
+.search_input_field {
+  width: 300px;
+}
+*/
+
+.filter_buttons {
+  margin-top: 5px;
+  padding: 4px;
+  color: white;
+  background-color: blueviolet;
+  border-radius: 10px;
+  font-size: small;
+  width: 50px;
+}
+
+.filter_order_buttons {
+  padding: 4px;
+  color: white;
+  background-color: blueviolet;
+  border-radius: 10px;
+  font-size: small;
+  width: 100px;
+}
+
+.show_contact {
+  padding: 4px;
+  color: white;
+  background-color: blueviolet;
+  border-radius: 10px;
+  font-size: small;
+  width: 100px;
+}
+
+#detailed_filter {
+  margin-top: 5px;
+}
+
+/*
+.div_for_messages {
+  border: solid 1px;
+}
+*/
+
+.pagination > li > a
+{
+    background-color: white;
+    color: blueviolet;
+}
+
+.pagination > .active > a
+{
+    color: white;
+    background-color: blueviolet !Important;
+    border: solid 1px blueviolet !Important;
+}
+
+.pagination > .active > a:hover
+{
+    color: white;
+    background-color: blueviolet !Important;
+    border: solid 1px blueviolet;
+}
+
+.map_index {
+  margin-right: 0;
+  margin-bottom: 20px;
+  flex: 30 00 37%;
+  align-self: flex-start;
+  flex-direction: column;
+  overflow: none;
+  float: left;
+  display: flex;
+  /*border: 2px solid green;*/
+}
+
+.map_index_down {
+  margin-right: 0;
+  margin-bottom: 20px;
+  width: 100%;
+  align-self: flex-start;
+  flex-direction: column;
+  overflow: none;
+  float: left;
+  display: flex;
+  /*border: 2px solid green;*/
+}
+
+#listings {
+  /*border: 1px solid blue;*/
+  margin-top: 10px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.flex-container-index {
+  clear: both;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: flex-start;
+  align-content: flex-start;
+  /*border: 1px solid red;*/
+  text-align: justify;
+  max-height: 560px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  flex: 0 0 60%;
+}
+
+.flex-container-index_up {
+  clear: both;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: flex-start;
+  align-content: flex-start;
+  /*border: 1px solid red;*/
+  text-align: justify;
+  max-height: 560px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin-bottom: 20px;
+}
+
+h5 {
+  margin-bottom: 2px;
+}
+
+/*
+.filter_textinput {
+  border-radius: 10px;
+  padding-left: 5px;
+}
+*/
+/*
+.filter_numberinput {
+  width: 20px;
+}
+*/
+
+.inputfield_number {
+  width: 120px;
+  border-radius: 10px;
+  padding-left: 5px;
+}
+
+.inputfield_text {
+  border-radius: 10px;
+  padding-left: 5px;
+  width: 250px;
+}
+
+#address {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.address_result:hover {
+  background-color: blueviolet;
+  color: white;
+  cursor: pointer;
+}
+
+.address_inputfield {
+  width: 100%;
+  border-radius: 10px;
+}
+
+#map_create {
+  height: 300px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+footer {
+  background-color: blueviolet;
+  color: white;
+  /*position: absolute;
+  bottom: 0;
+  width: 100%;*/
+}
+
+#features_div {
+  border: solid 2px black;
+  border-radius: 15px;
+  text-align: center;
+  width: fit-content;
+  margin: auto;
+  padding: 5px;
+}
+
+/*
+#search_button {
+  position: absolute;
+  top: 220px;
+  right: 20px;
+  padding: 10px;
+  z-index: 400;
+}
+*/
+
+

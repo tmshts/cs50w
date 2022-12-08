@@ -1,0 +1,79 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}Casa{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="{% static 'casa/styles.css' %}" rel="stylesheet" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
+        integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14="
+        crossorigin=""/>
+        {% block script %}
+        {% endblock %}
+    </head>
+    <body class="d-flex flex-column min-vh-100">
+
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: blueviolet">
+          
+
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                    <a class="nav-link" id="navbar-link" href="{% url 'index' %}">All Listings</a>
+                    </li>
+                    {% comment "Optional note" %}
+                    <li class="nav-item">
+                        <a class="nav-link" id="navbar-link" href="{% url 'sales' %}">Sales</a> 
+                    </li>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="navbar-link" href="{% url 'rent' %}">Rent</a>
+                    </li>
+                    {% endcomment %} 
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" id="navbar-link" href="{% url 'create' %}">Add Property</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="navbar-link" href="{% url 'portfolio' %}">Your Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="navbar-link" href="{% url 'logout' %}">Log Out</a>
+                    </li>
+
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" id="navbar-link" href="{% url 'login' %}">Log In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="navbar-link" href="{% url 'register' %}">Register</a>
+                    </li>
+                {% endif %}
+                </ul>
+
+        </nav>
+
+
+        <div class="divbody">
+            {% block body %}
+            {% endblock %}
+        </div>
+
+
+        <!-- Footer -->
+        <footer class="page-footer font-small mt-auto">
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3">
+                © 2022 Copyright: Casa
+                <br>
+                Support: WhatsApp +1 452 458 5688
+            </div>
+        </footer>
+
+
+    </body>
+</html>

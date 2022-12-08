@@ -1,0 +1,14 @@
+{% extends "casa/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+    <h2 class="welcome_headers">{{ error }}</h1>
+        <hr>
+    <a href="{% url 'index' %}">Go to Homepage</a>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'casa/index.js' %}"></script>
+{% endblock %}

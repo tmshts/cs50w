@@ -1,0 +1,148 @@
+{% extends "casa/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+    <h2 class="welcome_headers">Add Your Property</h2>
+
+    {% if error %}
+        <div style="color: red;">{{ error }}</div>
+    {% endif %}
+      
+        <h4>Address</h4>
+
+        <b>Find Your Address</b>
+        <div>
+            <input type="text" id="address" class="inputfield_text" placeholder="Type Your Address">
+        </div>
+        <div>
+            <button id="find" class="filter_buttons" style="margin-top: 3px;">Find</button>
+        </div>
+        <div id="addresses">
+        </div>
+        <div id="map_create" class="class_map">
+        </div>
+
+    <br>
+
+    <form action="{% url 'create' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <!--Address of Property -->
+        <b>These fields will be filled automatically once you find your address above</b>
+        <div id="form_address">
+            Address:
+            <div>
+                {{ form.address }}
+            </div>
+            Longitude
+            <div>
+                {{ form.longitude}}
+            </div>
+            Latitude
+            <div>
+                {{ form.latitude}}
+            </div>
+        </div>
+
+        <hr>
+
+        <!--Pictures of Property -->
+        <h4>Pictures</h4>
+        <div><b>horizontal images are preffered</b></div>
+        {% for form in imageform %}
+        {{ form }}
+        {% endfor %}
+
+        <hr>
+
+        <!--Title of Property -->
+        <div class="form-outline mb-4">
+            <h4>Title</h4>
+            {{ form.title }}
+        </div>
+
+        <hr>
+
+        <!--Sales or Rent of Property -->
+        {% for type in SalesRent %}
+        <input type="radio" name="sales_or_rent" id="salesrent" value="{{ type.id }}" required style="height:25px; width:25px; vertical-align: middle; border-color: blueviolet; border-radius: 10px;"> {{ type.sales_or_rent }}
+        {% endfor %}
+
+        <hr>
+
+        <!--Property Type-->
+        <div class="form-group">
+            <h4>Property Type</h4>
+            <select name="property_type" required>
+                    <option hidden disabled selected value></option>
+                {% for type in PropertyType %}
+                    <option value="{{ type.id }}">
+                        {{ type.type_of_property }}
+                    </option>
+                {% endfor %}
+                </option>
+            </select>
+        </div>
+
+        <hr>
+
+        <!--Size of Property -->
+        <div>
+            <h4 id="h5">ft² size</h4> &nbsp <i><a href="https://www.metric-conversions.org/area/square-meters-to-square-feet.htm" target="_blank" rel="noopener noreferrer">m² to ft² calculator</a></i>
+        </div>
+        <div class="form-outline mb-4">
+            {{ form.size }}
+        </div>
+
+        <!--Bedroom of Property -->
+        <div class="form-outline mb-4">
+            <h4>Total bedrooms</h4>
+            {{ form.total_bedroom }}
+        </div>
+
+        <!--Bathroom of Property -->
+        <div class="form-outline mb-4">
+            <h4>Total bathrooms</h4>
+            {{ form.total_bathroom }}
+        </div>
+            
+        <hr>
+
+        <!--Amenities of Property -->
+        <div class="form-outline mb-4">
+            <h4>Amenities</h4>
+            {{ form.amenities }}
+        </div>
+        
+        <hr>
+
+        <!--Description of Property -->
+        <div class="form-outline mb-4">
+            <h4>Description</h4>
+            {{ form.description }}
+        </div>
+
+        <hr>
+
+        <!--Price of Property -->
+        <div class="form-group">
+            <h4>Price in USD</h4>
+            {{ form.price }}
+        </div>
+
+        <input class="btn-primary btn" type="submit" value="Save">
+    </form>
+
+    <br>
+
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'casa/create.js' %}"></script>
+    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
+    integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg="
+    crossorigin="">
+    </script>
+{% endblock %}

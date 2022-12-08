@@ -1,0 +1,75 @@
+{% extends "casa/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+    <h2 class="welcome_headers">Register</h2>
+
+    {% if message %}
+        <div>{{ message }}</div>
+    {% endif %}
+
+    <form action="{% url 'register' %}" method="post">
+        {% csrf_token %}
+        <!-- Username input -->
+        <div class="form-outline mb-4">
+            <input class="form-control" autofocus required="True" type="text" name="username" placeholder="Username">
+        </div>
+
+        <div class="box">
+                <!-- First name input -->
+                <div class="form-outline mb-4">
+                    <h5>Person:</h5>
+                    <input class="form-control" type="text" name="first_name" placeholder="First Name">
+                </div>
+
+                <!-- Company name input -->
+                <div>
+                    <h5>Company:</h5>
+                    <input class="form-control" type="text" name="company_name" placeholder="Company Name">
+                </div>
+        </div>
+
+        <div class="box">
+            <!-- Last name input -->
+            <div class="form-outline mb-4">
+                <input class="form-control" type="text" name="last_name" placeholder="Last Name">
+            </div>
+
+            <!-- Representative input -->
+            <div class="form-outline mb-4">
+                <input class="form-control" type="text" name="representative" placeholder="Representative Name">
+            </div>
+        </div>
+
+
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+            <input class="form-control" required="True" type="email" name="email" placeholder="Email Address">
+        </div>
+
+        <!-- Phone Number input -->
+        <div class="form-outline mb-4">
+            <input class="form-control" required="True" type="text" name="phonenumber" placeholder="Phone Number">
+        </div>
+
+        <!-- Password input -->
+        <div class="form-outline mb-4">
+            <input class="form-control" required="True" type="password" name="password" placeholder="Password">
+        </div>
+
+        <!-- Password Confirmation input -->
+        <div class="form-outline mb-4">
+            <input class="form-control" required="True" type="password" name="confirmation" placeholder="Confirm Password">
+        </div>
+
+        <!-- Submit button -->
+        <input type="submit" class="btn btn-primary btn-block mb-4" value="Register" style="background-color: blueviolet;" />
+      
+        <!-- Register buttons -->
+        <div>
+          <p style="text-align: center;">Already a member? <a href="{% url 'login' %}">Log In Here</a></p>
+        </div>
+      </form>
+
+{% endblock %}

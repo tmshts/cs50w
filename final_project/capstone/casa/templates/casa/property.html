@@ -1,0 +1,143 @@
+{% extends "casa/layout.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block body %}
+
+    <p style="display: none;" id="property_id">{{ property.id }}</p>
+    <p style="display: none;" id="longitude">{{ property.longitude }}</p>
+    <p style="display: none;" id="latitude">{{ property.latitude }}</p>
+
+    <div style="text-align: center;">
+        <h1 class="welcome_headers" id="title">{{ property.title_of_property }}</h1>
+        <div id="div_for_title">
+            
+        </div>
+        {% if property.listed_by_user.username == current_user.username %}
+        <div id="title_hide" style="text-align: center;">
+            <button id="edit_title" class="btn_design">Edit Title</button>
+        </div>
+        {% endif %}
+    </div>
+
+    <hr>
+
+    <div style="text-align: center;">
+        {% for i in images %}
+        {% if forloop.counter <= 4  %}
+        <img class="images_in_property" src="{{ i.images.url }}" alt="">
+        {% endif %}
+        {% endfor %}
+
+        {% if property.listed_by_user.username == current_user.username %}
+
+            {% if not imageform %}
+            <div id="pictures_hide" style="margin-top: 5px;">
+                <button id="delete_pictures" class="btn_design">Delete All Pictures and Upload New</button>
+            </div>
+            {% endif %}
+
+            {% if imageform %}
+            <form action="{% url 'property' property.id %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div><b>horizontal images are preffered</b></div>
+                {% for form in imageform %}
+                {{ form }}
+                {% endfor %}
+                <input class="btn_design" name="new_pictures" type="submit" value="Save">
+                {% if error %}
+                <div style="color: red;">{{ error }}</div>
+                {% endif %}
+            </form>
+            {% endif %}
+
+        {% endif %}
+
+    </div>
+
+    <hr>
+    
+    <h5 style="text-align: center;"><b id="complete_address">{{ property.street_name }} {{ property.street_number }}, {{ property.city }}, {{ property.state }} {{ property.postal_code }}</b></h5>
+
+        <div id="features_div">
+            <div id="default_price" style="display: none;">{{ property.price }}</div>
+            <div id="price_div"><h4><b id="currency_symbol">USD</b>&nbsp<b id="price">{{ property.price|intcomma }}</b></h4></div>
+            <div id="div_for_price"></div>
+            {% if property.listed_by_user.username == current_user.username %}
+            <div id="price_hide" style="margin-top: 5px;">
+                <button id="edit_price" class="btn_design">Edit Price</button>
+            </div>
+                {% endif %}
+                <h5><b>{{ property.bedroom }}</b> bed &nbsp|&nbsp  <b>{{ property.bathroom }}</b> bath &nbsp|&nbsp <b id="size">{{ property.size }}</b><i id="metric"> ft² </i></h5>
+        </div>
+
+    <hr>
+    
+    <h4><b>{{ property.type_of_property.type_of_property }} for {{ property.sales_rent.sales_or_rent }}</b></h4>
+    <br>
+    <div>
+        <b>Description:</b>
+        <div id="property_description">{{ property.description_of_property }}</div>
+        <div id="div_for_textarea">
+        {% if property.listed_by_user.username == current_user.username %}
+        <div id="description_hide" style="margin-top: 5px;">
+            <button id="edit_description" class="btn_design">Edit Description</button>
+        </div>
+        {% endif %}
+    </div>
+    <br>
+    <b>Amenities:</b>
+    <div class="flex-container">
+        {% for i in property.amenities %}
+        <div class="flex-item">
+            {{ i }}
+        </div>
+        {% endfor %}
+    </div>
+
+    <hr>
+
+    <div>
+        {% for i in images %}
+        {% if forloop.counter > 4  %}
+        <img class="images_in_property" src="{{ i.images.url }}" alt="">
+        {% endif %}
+        {% endfor %}
+    </div>
+
+    <hr>
+
+    <div id="map">
+    </div>
+      
+    <hr>
+
+    <h6><b>Contact Details:</h6></b>
+    {% if property.listed_by_user.first_name%}
+    <div>Name: <b>{{ property.listed_by_user.first_name }} {{ property.listed_by_user.last_name }}</b></div>
+    {% else %}
+    <div>Company: <b>{{ property.listed_by_user.company_name }}</b></div>
+    <div>Representative: <b>{{ property.listed_by_user.representative }}</b></div>
+    {% endif %}
+
+    <div id="open_div_request">
+        <button id="show_contact" class="show_contact">Show contact</button>
+    </div>
+    <div id="contact_details">
+    </div>
+
+    <hr>
+
+    <h6><i>This property was listed: {{ property.time_of_creation }}</i></h6>
+
+    <hr>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'casa/property.js' %}"></script>
+    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
+    integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg="
+    crossorigin="">
+    </script>
+{% endblock %}
