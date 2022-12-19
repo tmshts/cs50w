@@ -1,3 +1,6 @@
+![cs50w_completed](https://user-images.githubusercontent.com/74012536/208494086-47df3333-30ee-499e-97ea-de598f0612a9.PNG)
+
+
 These Problem Sets needed to be done for the course CS50’s Web Programming with Python and JavaScript from Harvard.
 
 An important part of these projects was to make a short video demo not exceeding 5 minutes:
