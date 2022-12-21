@@ -1,4 +1,4 @@
-![cs50w_completed](https://user-images.githubusercontent.com/74012536/208494086-47df3333-30ee-499e-97ea-de598f0612a9.PNG)
+![image](https://user-images.githubusercontent.com/74012536/208908786-cbd41af1-35f8-4702-85ab-99250db1f66e.png)
 
 
 These Problem Sets needed to be done for the course CS50’s Web Programming with Python and JavaScript from Harvard.
